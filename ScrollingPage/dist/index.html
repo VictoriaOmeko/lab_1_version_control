@@ -1,15 +1,13 @@
 <!DOCTYPE html>
-<html lang="en" >
+<html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>CodePen - Scrolling Page With SVG Text Mask</title>
+  <title>Optimized Scrolling Page</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
-<link rel="stylesheet" href="./style.css">
-
+  <link rel="stylesheet" href="./style.css">
 </head>
 <body>
-<!-- partial:index.partial.html -->
-<!-- This is a recreation of Unfold's (https://dribbble.com/unfold) parallax scene: https://cdn.dribbble.com/users/14268/screenshots/3275340/northface.gif -->
+
 <div class="scrollDist"></div>
 <div class="main">
   <svg viewBox="0 0 1200 800" xmlns="http://www.w3.org/2000/svg">
@@ -19,30 +17,46 @@
         <image xlink:href="https://assets.codepen.io/721952/cloud1Mask.jpg" width="1200" height="800"/>
       </g>
     </mask>
-    
-    <image class="sky" xlink:href="https://assets.codepen.io/721952/sky.jpg"  width="1200" height="590" />
-    <image class="mountBg" xlink:href="https://assets.codepen.io/721952/mountBg.png" width="1200" height="800"/>    
-    <image class="mountMg" xlink:href="https://assets.codepen.io/721952/mountMg.png" width="1200" height="800"/>    
-    <image class="cloud2" xlink:href="https://assets.codepen.io/721952/cloud2.png" width="1200" height="800"/>    
+
+    <image class="sky" xlink:href="https://assets.codepen.io/721952/sky.jpg" width="1200" height="590" />
+    <image class="mountBg" xlink:href="https://assets.codepen.io/721952/mountBg.png" width="1200" height="800"/>
+    <image class="mountMg" xlink:href="https://assets.codepen.io/721952/mountMg.png" width="1200" height="800"/>
+    <image class="cloud2" xlink:href="https://assets.codepen.io/721952/cloud2.png" width="1200" height="800"/>
     <image class="mountFg" xlink:href="https://assets.codepen.io/721952/mountFg.png" width="1200" height="800"/>
     <image class="cloud1" xlink:href="https://assets.codepen.io/721952/cloud1.png" width="1200" height="800"/>
     <image class="cloud3" xlink:href="https://assets.codepen.io/721952/cloud3.png" width="1200" height="800"/>
     <text fill="#fff" x="350" y="200">EXPLORE</text>
     <polyline class="arrow" fill="#fff" points="599,250 599,289 590,279 590,282 600,292 610,282 610,279 601,289 601,250" />
-    
+
     <g mask="url(#m)">
-      <rect fill="#fff" width="100%" height="100%" />      
+      <rect fill="#fff" width="100%" height="100%"/>
       <text x="350" y="200" fill="#162a43">FURTHER</text>
     </g>
-    
+
     <rect id="arrowBtn" width="100" height="100" opacity="0" x="550" y="220" style="cursor:pointer"/>
   </svg>
 </div>
-<!-- partial -->
-  <script src='https://cdnjs.cloudflare.com/ajax/libs/zepto/1.2.0/zepto.min.js'></script>
-<script src='https://unpkg.co/gsap@3/dist/gsap.min.js'></script>
-<script src='https://unpkg.com/gsap@3/dist/ScrollTrigger.min.js'></script>
-<script src='https://unpkg.com/gsap@3/dist/ScrollToPlugin.min.js'></script><script  src="./script.js"></script>
+
+<script src="https://unpkg.com/gsap@3/dist/gsap.min.js"></script>
+<script src="https://unpkg.com/gsap@3/dist/ScrollTrigger.min.js"></script>
+<script src="https://unpkg.com/gsap@3/dist/ScrollToPlugin.min.js"></script>
+<script src="./script.js"></script>
 
 </body>
 </html>
+
+
+
+<!--Что было изменено:
+CSS Optimization:
+
+Убраны избыточные определения в стилях, и убран глобальный стиль div { position: absolute; }, который может негативно влиять на другие элементы, особенно если код будет расширяться.
+Добавлена отдельная обработка для классов .scrollDist и .main, что позволяет лучше контролировать их поведение и избежать излишних глобальных правил.
+JS Optimization:
+
+Сокращено количество дублирования кода при настройке fromTo для анимации элементов с использованием массивов и циклов. Это сокращает объем кода и делает его легче поддерживаемым.
+Переход на addEventListener вместо jQuery для событий, так как современные браузеры хорошо поддерживают нативные методы, и это может снизить зависимость от дополнительных библиотек.
+Упрощены события на кнопке, используя только один обработчик для наведения и нажатия.
+ScrollTrigger Improvements:
+
+ логика ScrollTrigger, чтобы настроить поведение более гибко и масштабируемо, добавив возможность дальнейшего расширения.-->
